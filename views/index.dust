@@ -1,0 +1,56 @@
+{>"layout" /}
+
+{<body}
+<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#formModal">
+Search for Books
+</button>
+<br/>
+<div class="container">
+<div class="row">
+<div class="col-md-1"></div>
+<h2>Top 5 Rated Books</h2>
+</div>
+</div>
+<br/>
+<br/>
+    {#books}
+    <div class="well">
+      <h4>{title}
+      <button class="btn btn-default pull-right" type="button"
+      data-toggle="collapse" data-target="#books_{id1}"
+      aria-expanded="false" aria-controls="books_{id1}">
+  Details
+</button></h4>
+<div class="collapse" id="books_{id1}">
+  <div>ISBN: {isbn}</div>
+  <div>YEAR OF PUBLICATION: {pubyear}</div>
+  <div>LANGUAGE: {langcode}</div>
+  <div>RATING: {avgrating}</div>
+  </div>
+</div>
+    {/books}
+
+    <!-- Modal -->
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <form method="post" action="/search">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Search Books</h4>
+        <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+           <div class="form-group">
+           <label>Book Name</label>
+           <input type="text" class="form-control" name="name" />
+           </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" value="Search"/>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+{/body}

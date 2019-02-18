@@ -1,0 +1,8 @@
+{>"layout" /}
+{<body}
+{#books}
+<div class="well">
+  <h4>{title}</h4>
+</div>
+{/books}
+{/body}
