@@ -34,7 +34,7 @@ app.get('/', (req, res)=>{
 		if(err){
 			return console.error('error fetching client from pool', err);
 		}
-		client.query('SELECT * FROM (select * from books order by avgrating desc limit 5)as hehe ', function(err, result){
+		client.query('SELECT * FROM (select * from books order by average_rating desc limit 5)as hehe ', function(err, result){
 			if(err){
 				return console.error('error running query', err);
 			}
@@ -119,11 +119,15 @@ app.post('/search', (req, res)=>{
 	pool.connect(function(err, client, done){
     const data = {
      name : req.body.name,
+      year : req.body.year,
    }
+   if(data.year!='')
+   {
    const query1 = {
-  text: "SELECT * from books where title ilike '%' || $1 || '%'",
-  values: [req.body.name],
+  text: "SELECT * from books where title ilike '%' || $1 || '%' and authors ilike '%' || $2 || '%' and original_publication_year=$3",
+  values: [req.body.name,req.body.Author,req.body.year],
 };
+
 		if(err){
 			return console.error('error fetching client from pool', err);
 		}
@@ -137,6 +141,28 @@ app.post('/search', (req, res)=>{
 			//console.log(res);  //uncomment to see result object on console
 			//note that result.row is an array of objects
 		});
+  }
+  else
+  {
+    const query1 = {
+   text: "SELECT * from books where title ilike '%' || $1 || '%' and authors ilike '%' || $2 || '%' ",
+   values: [req.body.name,req.body.Author],
+ };
+
+ 		if(err){
+ 			return console.error('error fetching client from pool', err);
+ 		}
+ 		client.query(query1, function(err, result){
+ 			if(err){
+ 				return console.error('error running query', err);
+ 			}
+ 			//myFunction(result);
+ 			//res.sendFile(path.join(__dirname+'display.html'));
+ 			res.render('index1',{books: result.rows});
+ 			//console.log(res);  //uncomment to see result object on console
+ 			//note that result.row is an array of objects
+ 		});
+  }
 	});
 });
 // Add

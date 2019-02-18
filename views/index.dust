@@ -7,7 +7,8 @@ Search for Books
 <br/>
 <div class="container">
 <div class="row">
-<div class="col-md-1"></div>
+<div class="col-md-3">Left side bar</div>
+<div class="col-md-6"></div>
 <h2>Top 5 Rated Books</h2>
 </div>
 </div>
@@ -17,15 +18,15 @@ Search for Books
     <div class="well">
       <h4>{title}
       <button class="btn btn-default pull-right" type="button"
-      data-toggle="collapse" data-target="#books_{id1}"
-      aria-expanded="false" aria-controls="books_{id1}">
+      data-toggle="collapse" data-target="#books_{book_id}"
+      aria-expanded="false" aria-controls="books_{book_id}">
   Details
 </button></h4>
-<div class="collapse" id="books_{id1}">
-  <div>ISBN: {isbn}</div>
-  <div>YEAR OF PUBLICATION: {pubyear}</div>
-  <div>LANGUAGE: {langcode}</div>
-  <div>RATING: {avgrating}</div>
+<div class="collapse" id="books_{book_id}">
+  <div>ISBN: {isbn13}</div>
+  <div>YEAR OF PUBLICATION: {original_publication_year}</div>
+  <div>LANGUAGE: {language_code}</div>
+  <div>RATING: {average_rating}</div>
   </div>
 </div>
     {/books}
@@ -43,6 +44,14 @@ Search for Books
            <div class="form-group">
            <label>Book Name</label>
            <input type="text" class="form-control" name="name" />
+           </div>
+           <div class="form-group">
+           <label>Author Name</label>
+           <input type="text" class="form-control" name="Author" />
+           </div>
+           <div class="form-group">
+           <label>Year of Publication</label>
+           <input type="text" class="form-control" name="year" />
            </div>
       </div>
       <div class="modal-footer">
