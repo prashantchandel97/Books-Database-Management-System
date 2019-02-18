@@ -46,6 +46,23 @@ app.get('/', (req, res)=>{
 		});
 	});
 });
+app.get('/top20', (req, res)=>{
+	pool.connect(function(err, client, done){
+		if(err){
+			return console.error('error fetching client from pool', err);
+		}
+		client.query('select * from books where original_publication_year>=2009 order by average_rating desc limit 20 ', function(err, result){
+			if(err){
+				return console.error('error running query', err);
+			}
+			//myFunction(result);
+			//res.sendFile(path.join(__dirname+'display.html'));
+			res.render('index2',{books: result.rows});
+			//console.log(res);  //uncomment to see result object on console
+			//note that result.row is an array of objects
+		});
+	});
+});
 // Add route code Here
 // app.get('/', (req, res) => {
 //    res.send('Welcome to Our SCHOOL API');

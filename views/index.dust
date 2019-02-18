@@ -1,19 +1,14 @@
-{>"layout" /}
 
+{>"layout" /}
 {<body}
 <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#formModal">
 Search for Books
 </button>
 <br/>
-<div class="container">
-<div class="row">
-<div class="col-md-3">Left side bar</div>
-<div class="col-md-6"></div>
-<h2>Top 5 Rated Books</h2>
-</div>
-</div>
+
 <br/>
 <br/>
+<h2 align="center">Top 5 Rated Books</h2>
     {#books}
     <div class="well">
       <h4>{title}
@@ -63,3 +58,24 @@ Search for Books
   </div>
 </div>
 {/body}
+{<body1}
+<br/>
+
+<br/>
+<br/>
+<br/>
+
+<br/>
+<br/>
+<div class= "container">
+  <div class= "row">
+		<div class="col-md-2">
+	<h4 >Love lists?</h4>
+		</div>
+    	</div>
+      	</div>
+
+<a href="/top20"><img src="top-20.jpg"  width="100" height="80" align="right"></a>
+<br/>
+<div><h4>Top 20 books of last decade</h4></div>
+{/body1}

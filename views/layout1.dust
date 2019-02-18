@@ -13,14 +13,12 @@
 <div class= "container">
   <div class= "row">
 		<div class="col-md-3">
-			{+body1 /}
 		</div>
     <div class = "col-md-6">
 
       {+body /}
 
     </div>
-  <div class="col-md-3">Right side bar</div>
   </div>
 
 </div>

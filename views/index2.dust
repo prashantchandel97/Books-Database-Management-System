@@ -1,0 +1,27 @@
+{>"layout1" /}
+{<body}
+<button type="button" class="btn btn-primary btn-block" onclick="goBack()">Go Back</button>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+<br/>
+{#books}
+<div class="well">
+  <h4>{title}
+  <button class="btn btn-default pull-right" type="button"
+  data-toggle="collapse" data-target="#books_{book_id}"
+  aria-expanded="false" aria-controls="books_{book_id}">
+Details
+</button></h4>
+<div class="collapse" id="books_{book_id}">
+<div>Author Name {authors}</div>
+<div>ISBN: {isbn13}</div>
+<div>YEAR OF PUBLICATION: {original_publication_year}</div>
+<div>LANGUAGE: {language_code}</div>
+<div>RATING: {average_rating}</div>
+</div>
+</div>
+{/books}
+{/body}
