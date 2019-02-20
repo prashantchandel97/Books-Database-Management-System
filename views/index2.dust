@@ -1,5 +1,11 @@
 {>"layout1" /}
 {<body}
+<style>
+body {background-image: url("background.jpg");
+height: 700px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-size: cover;}
+</style>
 <button type="button" class="btn btn-primary btn-block" onclick="goBack()">Go Back</button>
 <script>
 function goBack() {

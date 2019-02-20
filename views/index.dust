@@ -1,29 +1,42 @@
 
 {>"layout" /}
 {<body}
+<style>
+body {background-image: url("background.jpg");
+height: 700px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+
+  background-size: cover;}
+</style>
 <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#formModal">
 Search for Books
 </button>
-<br/>
-
-<br/>
-<br/>
 <h2 align="center">Top 5 Rated Books</h2>
     {#books}
-    <div class="well">
-      <h4>{title}
-      <button class="btn btn-default pull-right" type="button"
-      data-toggle="collapse" data-target="#books_{book_id}"
-      aria-expanded="false" aria-controls="books_{book_id}">
-  Details
-</button></h4>
-<div class="collapse" id="books_{book_id}">
-  <div>ISBN: {isbn13}</div>
-  <div>YEAR OF PUBLICATION: {original_publication_year}</div>
-  <div>LANGUAGE: {language_code}</div>
-  <div>RATING: {average_rating}</div>
+    <div class="well ">
+          <h4>{title}
+          <button class="btn btn-default" type="button" 
+          data-toggle="collapse" data-target="#books_{book_id}"
+          aria-expanded="false" aria-controls="books_{book_id}">
+      Details
+    </button></h4>
+    <div class="collapse" id="books_{book_id}">
+
+        <img src= "{image_url}" width="100" height="100" >
+
+        <span class="fa fa-star" style="color:orange;"></span>
+        <span class="fa fa-star" style="color:orange;"></span>
+        <span class="fa fa-star" style="color:orange;"></span>
+        <span class="fa fa-star" style="color:orange;"></span>
+        <span class="fa fa-star" style="color:orange;"></span>
+      <div>ISBN: {isbn13}</div>
+      <div>YEAR OF PUBLICATION: {original_publication_year}</div>
+      <div>LANGUAGE: {language_code}</div>
+      <div>AUTHORS: {authors}</div>
+      <div>RATINGS: {average_rating}</div>
+    </div>
   </div>
-</div>
+
     {/books}
 
     <!-- Modal -->
@@ -57,6 +70,14 @@ Search for Books
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
 {/body}
 {<body1}
 <br/>
@@ -70,12 +91,149 @@ Search for Books
 <div class= "container">
   <div class= "row">
 		<div class="col-md-2">
-	<h4 >Love lists?</h4>
+	<h2 >Love lists?</h2>
 		</div>
     	</div>
       	</div>
 
-<a href="/top20"><img src="top-20.jpg"  width="100" height="80" align="right"></a>
+<a href="/top20"><img src="top-20.png"  width="100" height="80" align="right"></a>
 <br/>
 <div><h4>Top 20 books of last decade</h4></div>
+<br/>
+<a href="/favourites"><img src="favourites-1.png"  width="100" height="80" align="right"></a>
+<br/>
+<div><h4>Top Favourites</h4></div>
+<br/>
+<br/>
+<div><h4>Top books by year </h4></div>
+
+<div class="btn-group" >
+  <button type="button" class="btn btn-primary" >Select year</button>
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+  </button>
+  <ul class="dropdown-menu" role="menu">
+  <li><a href="/2006">2006</a></li>
+  <li><a href="/2007">2007</a></li>
+  <li><a href="/2008">2008</a></li>
+  <li><a href="/2009">2009</a></li>
+    <li><a href="/2010">2010</a></li>
+    <li><a href="/2011">2011</a></li>
+    <li><a href="/2012">2012</a></li>
+    <li><a href="/2013">2013</a></li>
+    <li><a href="/2014">2014</a></li>
+    <li><a href="/2015">2015</a></li>
+    <li><a href="/2016">2016</a></li>
+    <li><a href="/2017">2017</a></li>
+  </ul>
+</div>
+<br/>
+<br/>
+<h3>Select by Genres</h3>
+<div >
+<select multiple="multiple" id="my-select" name="my-select[]">
+      <option value='elem_1'>elem 1</option>
+      <option value='elem_2'>elem 2</option>
+      <option value='elem_3'>elem 3</option>
+      <option value='elem_4'>elem 4</option>
+      <option value='elem_100'>elem 100</option>
+    </select>
+
+</div>
 {/body1}
+
+{<body2}
+
+	<style>
+		input[type=text], input[type=password] {
+		  width: 100%;
+		  padding: 9px 20px;
+		  margin: 8px 0;
+		  display: inline-block;
+		  border: 1px solid #ccc;
+		  box-sizing: border-box;
+		}
+
+		button {
+		  background-color: #4CAF50;
+		  color: white;
+		  padding: 12px 20px;
+		  margin: 8px 0;
+		  border: none;
+		  cursor: pointer;
+		  width: 100%;
+		}
+	</style>
+
+	<div class="row">
+		<div class="col-md-10 col-md-offset-2">
+			<h2 align="middle">Login</h2>
+			<div align="middle">
+			    <img src="avatar-2.png" width= "100" height= "100"  class="img-circle">
+			</div>
+			<br>
+			<form method="post" action="/login">
+			  	<div>
+				    <label for="uname">UserId</label>
+				    <input type="text" placeholder="Enter Username" name="uname" required>
+
+				    <label for="psw">Password</label>
+				    <input type="password" placeholder="Enter Password" name="psw" required>
+
+				    <button type="submit">Login</button>
+				    <label>
+				      <input type="checkbox" checked="checked" name="remember"> Remember me
+				    </label>
+				</div>
+			</form>
+		</div>
+	</div>
+	<h4 style="color:red;" align="middle">{?wrongid}  Invalid Credentials {/wrongid} </h4>
+	<h4 style="color:red;" align="middle">{?already} Already Exists  {/already} </h4>
+	<br>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-2">
+
+			<br>
+			<br>
+			<label>New?</label>
+			<button data-toggle="modal" data-target="#myModal2">Sign-Up</button>
+		</div>
+	</div>
+
+
+
+	<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+
+    <div class="modal-content">
+      	<form method = "post" action = "/signup">
+		        <div class="modal-header">
+		          <h4 class="modal-title">Sign Up</h4>
+		        </div>
+		        <div class="modal-body">
+
+		         	<div class = "form-group">
+		          		<label>UserId</label>
+		          		<input type = "text" class = "form-control" name = "uid" />
+		          	</div>
+
+		          	<div class = "form-group">
+		          		<label>Password</label>
+		          		<input type = "text" class = "form-control" name = "pwd" />
+		          	</div>
+
+
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		          <input type= "submit" class="btn btn-primary" value="Save" />
+		        </div>
+    	</form>
+    </div>
+
+    </div>
+
+
+
+	</div>
+{/body2}
