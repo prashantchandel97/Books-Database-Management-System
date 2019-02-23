@@ -27,6 +27,7 @@ Details
 <div>YEAR OF PUBLICATION: {original_publication_year}</div>
 <div>LANGUAGE: {language_code}</div>
 <div>RATING: {average_rating}</div>
+<div><a class="btn" href="/review/{book_id}"><button>View/Add reviews</button></a></div>
 </div>
 </div>
 {/books}

@@ -15,14 +15,14 @@ Search for Books
     {#books}
     <div class="well ">
           <h4>{title}
-          <button class="btn btn-default" type="button" 
+          <button class="btn btn-default" type="button"
           data-toggle="collapse" data-target="#books_{book_id}"
           aria-expanded="false" aria-controls="books_{book_id}">
       Details
     </button></h4>
     <div class="collapse" id="books_{book_id}">
 
-        <img src= "{image_url}" width="100" height="100" >
+        <img src= "{image_url}" width="95" height="125" >
 
         <span class="fa fa-star" style="color:orange;"></span>
         <span class="fa fa-star" style="color:orange;"></span>
@@ -34,6 +34,7 @@ Search for Books
       <div>LANGUAGE: {language_code}</div>
       <div>AUTHORS: {authors}</div>
       <div>RATINGS: {average_rating}</div>
+      <div><a class="btn" href="/review/{book_id}"><button>View/Add reviews</button></a></div>
     </div>
   </div>
 
@@ -107,7 +108,7 @@ Search for Books
 <br/>
 <div><h4>Top books by year </h4></div>
 
-<div class="btn-group" >
+<div class="btn-group1" >
   <button type="button" class="btn btn-primary" >Select year</button>
   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
   </button>
@@ -128,17 +129,6 @@ Search for Books
 </div>
 <br/>
 <br/>
-<h3>Select by Genres</h3>
-<div >
-<select multiple="multiple" id="my-select" name="my-select[]">
-      <option value='elem_1'>elem 1</option>
-      <option value='elem_2'>elem 2</option>
-      <option value='elem_3'>elem 3</option>
-      <option value='elem_4'>elem 4</option>
-      <option value='elem_100'>elem 100</option>
-    </select>
-
-</div>
 {/body1}
 
 {<body2}

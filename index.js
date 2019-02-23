@@ -5,7 +5,6 @@ const		cons = require('consolidate');
 const		dust = require('dustjs-helpers');
 const		pg = require('pg');
 const		app = express();
-
 app.engine('dust', cons.dust);
 
 //Set default ext .dus
@@ -34,7 +33,7 @@ app.get('/', (req, res)=>{
 		if(err){
 			return console.error('error fetching client from pool', err);
 		}
-		client.query('SELECT * FROM (select * from view2 order by average_rating desc limit 5)as hehe ', function(err, result){
+		client.query('SELECT * FROM (select * from books order by average_rating desc limit 5)as hehe ', function(err, result){
 			if(err){
 				return console.error('error running query', err);
 			}
@@ -84,6 +83,38 @@ app.get('/favourites', (req, res)=>{
 		});
 	});
 });
+app.get('/review/:leg', function(req, res, next) {
+  pool.connect(function(err, client, done){
+    if(err){
+      return console.error('error fetching client from pool', err);
+    }
+    const query1 = {
+   text: "select * from books inner join reviews on reviews.book_id=books.book_id where books.book_id=$1",
+   values:[req.params.leg],
+ };
+    client.query(query1, function(err, result){
+      if(err){
+        return console.error('error running query', err);
+      }
+      //myFunction(result);
+      var array=[];
+      array=result.rows;
+      //res.sendFile(path.join(__dirname+'display.html'));
+      res.render('indexreview',{books: result.rows,book:array[0]});
+      //console.log(res);  //uncomment to see result object on console
+      //note that result.row is an array of objects
+    // client.query(query2, function(err, result){
+    //   if(err){
+    //     return console.error('error running query', err);
+    //   }
+      //myFunction(result);
+      //res.sendFile(path.join(__dirname+'display.html'));
+      //console.log(res);  //uncomment to see result object on console
+      //note that result.row is an array of objects
+    });
+  });
+});
+
 app.get('/:leg', function(req, res, next) {
   pool.connect(function(err, client, done){
     if(err){
@@ -106,6 +137,7 @@ app.get('/:leg', function(req, res, next) {
   });
 });
 
+// Material Select Initialization
 //sumit code
 
 app.post('/login', (req, res)=>{
@@ -129,6 +161,7 @@ app.post('/login', (req, res)=>{
 	});
 
 });
+
 
 
 app.get('/newpage', function(req, res){
@@ -166,74 +199,6 @@ app.post('/signup', (req, res)=>{
 
 	});
 });
-// Add route code Here
-// app.get('/', (req, res) => {
-//    res.send('Welcome to Our SCHOOL API');
-// });
-//
-// app.get('/pool', function (req, res) {
-//     pool.connect(function(err,client,done) {
-//        if(err){
-//            console.log("not able to get connection "+ err);
-//            res.status(400).send(err);
-//        }
-//        client.query('SELECT * from students' ,function(err,result) {
-//           //call `done()` to release the client back to the pool
-//            done();
-//            if(err){
-//                console.log(err);
-//                res.status(400).send(err);
-//            }
-//            res.status(200).send(result.rows);
-//        });
-//     });
-// });
-//
-// app.post('/addstudent', function(req, res) {
-//   const results = [];
-//   // Grab data from http request
-//   const data = {
-//    name : req.body.studentName,
-//    age : req.body.studentAge,
-//    classroom : req.body.studentClass,
-//    parents : req.body.parentContact,
-//    admission : req.body.admissionDate,
-//  }
-//   // Get a Postgres client from the connection pool
-//   pool.connect(function(err, client, done) {
-//     // Handle connection errors
-//     if(err) {
-//       done();
-//       console.log(err);
-//       return res.status(500).json({success: false, data: err});
-//     }
-//     // SQL Query > Insert Data
-//     client.query( 'INSERT INTO students(student_name,student_age, student_class, parent_contact, admission_date) VALUES($1,$2,$3,$4,$5) ',[data.name, data.age, data.classroom, data.parents, data.admission]);
-//
-//     // SQL Query > Select Data
-//     // client.query('SELECT * FROM students');
-//     // Stream results back one row at a time
-//
-//     // query.on('row', (row) => {
-//     //   results.push(row);
-//     // });
-//     // // After all data is returned, close connection and return results
-//     // query.on('end', () => {
-//     //   done();
-//     //   return res.json(results);
-//     // });
-//     client.query('SELECT * from students' ,function(err,result) {
-//        //call `done()` to release the client back to the pool
-//         done();
-//         if(err){
-//             console.log(err);
-//             res.status(400).send(err);
-//         }
-//         res.status(200).send(result.rows);
-//     });
-//   });
-// });
-
 
 app.post('/search', (req, res)=>{
 	pool.connect(function(err, client, done){
@@ -279,13 +244,47 @@ app.post('/search', (req, res)=>{
  			//myFunction(result);
  			//res.sendFile(path.join(__dirname+'display.html'));
  			res.render('index1',{books: result.rows});
+
  			//console.log(res);  //uncomment to see result object on console
  			//note that result.row is an array of objects
  		});
   }
 	});
 });
-
+app.post('/review/:leg', function(req, res, next) {
+  pool.connect(function(err, client, done){
+    if(err){
+      return console.error('error fetching client from pool', err);
+    }
+    const query1 = {
+   text: "insert into reviews values($1,$2,$3)",
+   values:[req.params.leg,req.body.review,req.body.name1],
+ };
+    client.query(query1, function(err, result){
+      if(err){
+        return console.error('error running query', err);
+      }
+      //myFunction(result);
+      var array=[];
+      array=result.rows;
+      //res.sendFile(path.join(__dirname+'display.html'));
+      //res.render('indexreview',{books: result.rows,book:array[0]});
+      var redirecturl="/review/"+req.params.leg;
+      res.redirect(redirecturl);
+  		done();
+      //console.log(res);  //uncomment to see result object on console
+      //note that result.row is an array of objects
+    // client.query(query2, function(err, result){
+    //   if(err){
+    //     return console.error('error running query', err);
+    //   }
+      //myFunction(result);
+      //res.sendFile(path.join(__dirname+'display.html'));
+      //console.log(res);  //uncomment to see result object on console
+      //note that result.row is an array of objects
+    });
+  });
+});
 // Add
 //hehe
 app.listen(port, () => {

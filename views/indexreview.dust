@@ -1,0 +1,49 @@
+{>"layout1" /}
+{<body}
+<button type="button" class="btn btn-primary btn-block" onclick="window.location.href='/'">Home</button>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+<br/>
+{#books}
+<div class="well">
+<h3>{username}</h3>
+  <div>{review}</div>
+</div>
+{/books}
+{#book}
+<div class="well ">
+      <h4>Add a Review</h4>
+      <button class="btn btn-default" type="button"
+      data-toggle="collapse" data-target="#book_{book_id}"
+      aria-expanded="false" aria-controls="book_{book_id}">
+  Write
+</button>
+<div class="collapse" id="book_{book_id}">
+<form id="usrform" method="post" action="/review/{book_id}">
+ Name:<br/>
+  <input type="text" name="name1"><br/>
+</form>
+<textarea name="review" form="usrform" rows="4" cols="50">Enter text here...</textarea>
+<br/>
+<input type="submit" form="usrform" class="btn btn-primary" value="Submit"/>
+</div>
+</div>
+{/book}
+{/body}
+{<body1}
+{#book}
+<div class="well">
+  <h4>{title}</h4>
+  <img src= "{image_url}" width="95" height="125" >
+<div>Author Name {authors}</div>
+<div>ISBN: {isbn13}</div>
+<div>YEAR OF PUBLICATION: {original_publication_year}</div>
+<div>LANGUAGE: {language_code}</div>
+<div>RATING: {average_rating}</div>
+</div>
+{/book}
+<br/>
+{/body1}

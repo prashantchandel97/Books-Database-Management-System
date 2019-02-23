@@ -1,11 +1,5 @@
 {>"layout" /}
 {<body}
-<style>
-body {background-image: url("background.jpg");
-height: 700px; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-size: cover;}
-</style>
 <button type="button" class="btn btn-primary btn-block" onclick="goBack()">Go Back</button>
 <script>
 function goBack() {
@@ -15,18 +9,19 @@ function goBack() {
 <br/>
 {#books}
 <div class="well">
-  <h4>{title}
-  <button class="btn btn-default pull-right" type="button"
+  <h4>{title}</h4>
+  <button class="btn btn-default" type="button"
   data-toggle="collapse" data-target="#books_{book_id}"
   aria-expanded="false" aria-controls="books_{book_id}">
 Details
-</button></h4>
+</button>
 <div class="collapse" id="books_{book_id}">
 <div>Author Name {authors}</div>
 <div>ISBN: {isbn13}</div>
 <div>YEAR OF PUBLICATION: {original_publication_year}</div>
 <div>LANGUAGE: {language_code}</div>
 <div>RATING: {average_rating}</div>
+<div><a class="btn" href="/review/{book_id}"><button>View/Add reviews</button></a></div>
 </div>
 </div>
 {/books}
