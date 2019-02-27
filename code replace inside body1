@@ -1,0 +1,52 @@
+{<body1}
+<br/>
+
+<br/>
+<br/>
+<div class= "container">
+  <div class= "row">
+		<div class="col-md-2">
+	<h2 >Love lists?</h2>
+		</div>
+    	</div>
+      	</div>
+
+<a href="/top20"><img src="top-20.png"  width="100" height="80" align="right"></a>
+<br/>
+<div><h4>Top 20 books of last decade</h4></div>
+<br/>
+<a href="/favourites"><img src="favourites-1.png"  width="100" height="80" align="right"></a>
+<br/>
+<div><h4>Top Favourites</h4></div>
+<br/>
+<br/>
+<div><h4>Top books by year </h4></div>
+
+<div class= "container">
+  <div class= "row">
+		<div class="col-md-1" >
+  <a href="/2006"><button>2006</button></a>
+  <a href="/2007"><button>2007</button></a>
+  <a href="/2008"><button>2008</button></a>
+  <a href="/2009"><button>2009</button></a>
+    <a href="/2010"><button>2010</button></a>
+
+
+    </div>
+    <div class="col-md-1">
+    <a href="/2011"><button>2011</button></a>
+    <a href="/2012"><button>2012</button></a>
+    <a href="/2013"><button>2013</button></a>
+    <a href="/2014"><button>2014</button></a>
+    <a href="/2015"><button>2015</button></a>
+
+    </div>
+    <div class="col-md-1">
+    <a href="/2016"><button>2016</button></a>
+    <a href="/2017"><button>2017</button></a>
+    </div>
+    </div>
+    </div>
+<br/>
+<br/>
+{/body1}
